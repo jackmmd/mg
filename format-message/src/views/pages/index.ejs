@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulario de Error</title>
+  <link rel="stylesheet" href="/public/styles/styles.css">
+</head>
+<body>
+  <form action="/submit" method="POST">
+    <!-- Tipo de error -->
+    <label for="tipo_error">Seleccionar Tipo de Error:</label>
+    <select id="tipo_error" name="tipo_error">
+      <option value="Error de servicio">Error de servicio</option>
+      <option value="Afiliación no registrada">Afiliación no registrada</option>
+      <option value="Endoso no registrado">Endoso no registrado</option>
+      <option value="Sustento requerido">Sustento requerido</option>
+      <option value="Carga de asegurados pendiente">Carga de asegurados pendiente</option>
+      <option value="Confirmación manual requerida">Confirmación manual requerida</option>
+      <option value="Parámetros incorrectos">Parámetros incorrectos</option>
+      <option value="Información de afiliado incorrecta">Información de afiliado incorrecta</option>
+      <option value="Pestaña inválida">Pestaña inválida</option>
+    </select>
+    <!-- DNI -->
+    <label for="dni">DNI:</label>
+    <input type="text" id="dni" name="dni" value="40962660" required>
+
+    <!-- Asegurado -->
+    <label for="asegurado">Asegurado:</label>
+    <input type="text" id="asegurado" name="asegurado" value="IPARRAGUIRRE MAVEL" required>
+
+    <!-- Contratante -->
+    <label for="contratante">Contratante:</label>
+    <input type="text" id="contratante" name="contratante">
+
+    <!-- Clínica -->
+    <label for="clinica">Clínica:</label>
+    <input type="text" id="clinica" name="clinica" value="SAN FELIPE" required>
+
+    <!-- Detalles del error -->
+    <label for="detalles">Detalles del error:</label>
+    <textarea rows="5" id="detalles" name="detalles" required>Parece un error de servicio, habría que revisarlo con la clínica, proceder</textarea>
+
+    <!-- Botón de envío -->
+    <button type="submit">Enviar</button>
+  </form>
+  <script>
+    const errorMessages = {
+      "Error de servicio": "Parece un error de servicio, habría que revisarlo con la clínica, proceder",
+      "Afiliación no registrada": "Al parecer aun no se realiza la carga de ese asegurado, proceder",
+      "Endoso no registrado": "No se ha realizado la carga del endoso con su nueva vigencia, proceder",
+      "Sustento requerido": "No es un error, debe enviar otro sustento la clínica",
+      "Carga de asegurados pendiente": "No hicieron la carga de asegurados, proceder",
+      "Confirmación manual requerida": "Ignorar esa alerta, presionar 'AUTORIZACIÓN DE CONSULTA' y proceder.",
+      "Parámetros incorrectos": "Se debe desactivar el check 'Consulta General al Registro de Afiliados al AUS', seleccionar Chubb Perú y luego proceder.",
+      "Información de afiliado incorrecta": "Posiblemente un problema con la información registrada del afiliado. Habría que revisarlo con la clínica. Proceder",
+      "Pestaña inválida": "La clínica está usando una pestaña equivocada, la búsqueda debe hacerlo en la pestaña búsqueda del asegurado."
+    };
+
+    document.getElementById('tipo_error').addEventListener('change', function () {
+      const selected = this.value;
+      document.getElementById('detalles').value = errorMessages[selected] || '';
+    });
+    document.querySelector('form').addEventListener('submit', function (e) {
+    // Evita que se recargue la página si solo quieres copiar:
+    // e.preventDefault();
+
+    const dni = document.getElementById('dni').value;
+    const asegurado = document.getElementById('asegurado').value;
+    const contratante = document.getElementById('contratante').value;
+    const clinica = document.getElementById('clinica').value;
+    const tipoError = document.getElementById('tipo_error').value;
+    const detalles = document.getElementById('detalles').value;
+
+    const text = `DNI: ${dni}
+Asegurado: ${asegurado}
+Contratante: ${contratante}
+Clínica: ${clinica}
+Tipo error: ${tipoError}
+Detalles del error: ${detalles}`;
+
+    navigator.clipboard.writeText(text).then(() => {
+      console.log("Copiado al portapapeles:");
+      console.log(text);
+    }).catch(err => {
+      console.error('Error al copiar al portapapeles: ', err);
+    });
+  });
+  </script>
+</body>
+</html>
