@@ -16,7 +16,7 @@ app.get('/',async(req,res)=>{
     res.render('pages/index')
 })
 app.post('/incident/create',incidentController.create)
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 8000
 app.listen(port,()=>{
     console.log(`server on port ${port}`)
 })
