@@ -1,4 +1,3 @@
-const path = require('path')
 const { google } = require('googleapis'); 
 // const serviceAccountKeyFile = path.join(__dirname,"key-ea854a5e42d4.json"); 
 const serviceAccount = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_JSON);
