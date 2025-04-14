@@ -17,7 +17,7 @@ class IncidentController {
     Tipo error: ${tipo_error}
     Detalles del error: ${detalles}`;
 
-    await incidentService.create([date_formated,tipo_error, dni, asegurado, contratante, clinica, detalles],text)
+    await incidentService.create([date_formated,tipo_error, dni, asegurado, contratante, clinica, detalles,date_formated])
     res.send('ok')
   }
 }
