@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Formulario de Error</title>
-  <link rel="stylesheet" href="/public/styles/styles.css">
+  <link rel="stylesheet" href="styles/styles.css">
 </head>
 <body>
-  <form action="/submit" method="POST">
+  <form action="/incident/create" method="POST">
     <!-- Tipo de error -->
     <label for="tipo_error">Seleccionar Tipo de Error:</label>
     <select id="tipo_error" name="tipo_error">
@@ -20,6 +20,8 @@
       <option value="Parámetros incorrectos">Parámetros incorrectos</option>
       <option value="Información de afiliado incorrecta">Información de afiliado incorrecta</option>
       <option value="Pestaña inválida">Pestaña inválida</option>
+      <option value="Error de servicio - intentar de nuevo">Error de servicio - intentar de nuevo</option>
+      <option value="Tablas no actualizadas">Tablas no actualizadas</option>
     </select>
     <!-- DNI -->
     <label for="dni">DNI:</label>
@@ -54,7 +56,9 @@
       "Confirmación manual requerida": "Ignorar esa alerta, presionar 'AUTORIZACIÓN DE CONSULTA' y proceder.",
       "Parámetros incorrectos": "Se debe desactivar el check 'Consulta General al Registro de Afiliados al AUS', seleccionar Chubb Perú y luego proceder.",
       "Información de afiliado incorrecta": "Posiblemente un problema con la información registrada del afiliado. Habría que revisarlo con la clínica. Proceder",
-      "Pestaña inválida": "La clínica está usando una pestaña equivocada, la búsqueda debe hacerlo en la pestaña búsqueda del asegurado."
+      "Pestaña inválida": "La clínica está usando una pestaña equivocada, la búsqueda debe hacerlo en la pestaña búsqueda del asegurado.",
+      "Error de servicio - intentar de nuevo": "Estos son los resultados del SITEDS, parece un error de servicio, intentar nuevamente si no habría que revisarlo con la clínica, proceder",
+      "Tablas no actualizadas": "Las tablas no estan actualizadas debe actualizar las tablas de acuerdo a la circular",
     };
 
     document.getElementById('tipo_error').addEventListener('change', function () {

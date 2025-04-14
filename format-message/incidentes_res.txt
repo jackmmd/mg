@@ -1,7 +1,0 @@
-DNI: 40962633
-Asegurado: IPARRAGUIRRE MAVEL
-Contratante: Contratante de prueba
-Clínica: SAN FELIPE
-Tipo error: Error de servicio
-Detalles del error: Parece un error de servicio, habría que revisarlo con la clínica, proceder
-
