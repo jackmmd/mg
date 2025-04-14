@@ -3,13 +3,13 @@
 - incidentes_res.txt
 
 ## Preview
-<img src="./src/public/preview.png"/>
+<img src="./public/preview.png"/>
 
 ## Archivo incidentes.csv
-<img src="./src/public/incidentes.png"/>
+<img src="./public/incidentes.png"/>
 
 ## Archivo incidentes_res.txt
-<img src="./src/public/incidentes_res.png"/>
+<img src="./public/incidentes_res.png"/>
 
 
 ## Ejecución del script
