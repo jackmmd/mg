@@ -3,7 +3,15 @@ const incidentService = new IncidentService()
 class IncidentController {
   async create(req, res) {
     const { tipo_error, dni, asegurado, contratante, clinica, detalles } = req.body;
-    await incidentService.create([(new Date()).toLocaleDateString(),tipo_error, dni, asegurado, contratante, clinica, detalles])
+    const text = `
+    DNI: ${dni}
+    Asegurado: ${asegurado}
+    Contratante: ${contratante}
+    Clínica: ${clinica}
+    Tipo error: ${tipo_error}
+    Detalles del error: ${detalles}`;
+
+    await incidentService.create([(new Date()).toLocaleDateString(),tipo_error, dni, asegurado, contratante, clinica, detalles, text])
     res.send('ok')
   }
 }
