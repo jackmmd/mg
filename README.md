@@ -9,7 +9,7 @@
 <img src="./public/incidentes.png"/>
 
 ## Historial de mensajes 
-Cada ves que se registre un incinte se imprime un mensaje en consola del navegador
+Cada vez que se registre un incidente, se imprime un mensaje en la consola del navegador.
 
 <img src="./public/incidentes_res.png"/>
 
