@@ -1,6 +1,7 @@
 const { google } = require('googleapis'); 
+const { GOOGLE_SERVICE_ACCOUNT_JSON } = require('../constants/global-constants');
 // const serviceAccountKeyFile = path.join(__dirname,"key-ea854a5e42d4.json"); 
-const serviceAccount = JSON.parse(process.env.GOOGLE_SERVICE_ACCOUNT_JSON);
+const serviceAccount = JSON.parse(GOOGLE_SERVICE_ACCOUNT_JSON);
 async function _getGoogleSheetClient() {
   const auth = new google.auth.GoogleAuth({
     credentials: serviceAccount,

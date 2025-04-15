@@ -1,14 +1,14 @@
 {
   "name": "format-message",
   "version": "1.0.0",
-  "description": "",
+  "description": "Registro de incidentes",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon index.js",
     "start":"node index.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "duberly.mondragon@materiagris.pe",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",

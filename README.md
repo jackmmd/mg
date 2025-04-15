@@ -5,18 +5,28 @@
 ## Preview
 <img src="./public/preview.png"/>
 
-## Archivo incidentes.csv
+## Archivo Google Sheets
 <img src="./public/incidentes.png"/>
 
-## Archivo incidentes_res.txt
+## Historial de mensajes 
+Cada ves que se registre un incinte se imprime un mensaje en consola del navegador
+
 <img src="./public/incidentes_res.png"/>
 
 
-## Ejecución del script
+## Instalación local
+```bash
+git clone https://github.com/jackmmd/mg
+```
+```bash
+cd mg
+```
+```bash
+npm i
+```
 ```bash
 npm run dev
 ```
-
 ```bash
 http://localhost:3000
 ```

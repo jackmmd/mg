@@ -1,4 +1,7 @@
 const success_messages = {
     success: "Todo salió correctamente"
 }
-module.exports = { success_messages }
+const error_messages = {
+    ivalid_credentials: "Credenciales inválidas"
+}
+module.exports = { success_messages,error_messages }

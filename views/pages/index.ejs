@@ -3,23 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Formulario de Error</title>
+  <title>Casos SITEDS | Crear incidente</title>
   <link rel="stylesheet" href="styles/styles.css">
 </head>
 <body>
-  <form action="/incident/create" method="POST">
+  <p id="info-small">Al momento de enviar el formulario se copiara el mensage en el portapapeles par ser enviado.</p>
+  <form id="form-incident" action="/incident/create" method="POST">
     <!-- Tipo de error -->
-    <label for="tipo_error">Seleccionar Tipo de Error:</label>
+    <label for="tipo_error">Tipo de Error:</label>
     <select id="tipo_error" name="tipo_error">
-      <option value="Error de servicio">Error de servicio</option>
-      <option value="Carga de endoso pendiente">Carga de endoso pendiente</option>
-      <option value="Sustento inválido">Sustento inválido</option>
-      <option value="Carga de asegurados pendiente">Carga de asegurados pendiente</option>
-      <option value="Pendiente ejecutar autorización">Pendiente ejecutar autorización</option>
-      <option value="Error por búsqueda global">Error por búsqueda global</option>
-      <option value="Error - Información del afiliado incorrecta">Error - Información del afiliado incorrecta</option>
-      <option value="Pestaña inválida">Pestaña inválida</option>
-      <option value="Tablas no actualizadas">Tablas no actualizadas</option>
+      <!-- Las opciones se agregan dinámicamente -->
     </select>
     <!-- DNI -->
     <label for="dni">DNI:</label>
@@ -44,27 +37,36 @@
     <!-- Botón de envío -->
     <button type="submit">Enviar</button>
   </form>
-  <script>
-    const errorMessages = {
-      "Error de servicio": "Estos son los resultados del SITEDS, parece un error de servicio, intentar nuevamente si no habría que revisarlo con la clínica, proceder",
-      "Carga de endoso pendiente": "No se ha realizado la carga del endoso con su nueva vigencia, proceder",
-      "Sustento inválido": "Debe enviar otro sustento la clínica",
-      "Carga de asegurados pendiente": "No hicieron la carga de asegurados, proceder",
-      "Pendiente ejecutar autorización": "Ignorar esa alerta, presionar 'AUTORIZACIÓN DE CONSULTA' y proceder.",
-      "Error por búsqueda global": "Se debe desactivar el check 'Consulta General al Registro de Afiliados al AUS', seleccionar Chubb Perú y luego proceder.",
-      "Error - Información del afiliado incorrecta": "Posiblemente un problema con la información registrada del afiliado. Habría que revisarlo con la clínica. Proceder",
-      "Pestaña inválida": "La clínica está usando una pestaña equivocada, la búsqueda debe hacerlo en la pestaña búsqueda del asegurado.",
-      "Tablas no actualizadas": "Las tablas no estan actualizadas debe actualizar las tablas de acuerdo a la circular",
-    };
 
+  <script>
+    const error_messages = [
+      { value: "Error de servicio", details: "Estos son los resultados del SITEDS, parece un error de servicio, intentar nuevamente si no habría que revisarlo con la clínica, proceder" },
+      { value: "Carga de endoso pendiente", details: "Al parecer aún no se ha realizado la carga del endoso con su nueva vigencia, proceder" },
+      { value: "Sustento inválido", details: "Debe enviar otro sustento la clínica" },
+      { value: "Carga de asegurados pendiente", details: "Al parecer no hicieron la carga de asegurados, proceder" },
+      { value: "Pendiente ejecutar autorización", details: "Ignorar esa alerta, presionar 'AUTORIZACIÓN DE CONSULTA' y proceder." },
+      { value: "Error por búsqueda global", details: "Se debe desactivar el check 'Consulta General al Registro de Afiliados al AUS', seleccionar Chubb Perú y luego proceder." },
+      { value: "Error - Información del afiliado incorrecta", details: "Posiblemente un problema con la información registrada del afiliado. Habría que revisarlo con la clínica. Proceder" },
+      { value: "Pestaña inválida", details: "La clínica está usando una pestaña equivocada, la búsqueda debe hacerlo en la pestaña búsqueda del asegurado." },
+      { value: "Tablas no actualizadas", details: "Las tablas no estan actualizadas debe actualizar las tablas de acuerdo a la circular" }
+    ];
+
+    const form_incident = document.getElementById('form-incident')
+    const select_elemet = document.getElementById('tipo_error')
+    const input_small = document.getElementById('info-small')
+
+    // Asignar seleccionables al select tipo de error
+    error_messages.forEach(err=>{
+      select_elemet.innerHTML += `<option value="${err.value}">${err.value}</option>`
+    })
+
+    // Autocompletar los detalles del error al momento de seleccionar un tipo de error
     document.getElementById('tipo_error').addEventListener('change', function () {
       const selected = this.value;
-      document.getElementById('detalles').value = errorMessages[selected] || '';
+      document.getElementById('detalles').value = error_messages.find(err=>err.value===selected).details || '';
     });
-    document.querySelector('form').addEventListener('submit', function (e) {
-    // Evita que se recargue la página si solo quieres copiar:
-    // e.preventDefault();
 
+    document.querySelector('form').addEventListener('submit', function (e) {
     const dni = document.getElementById('dni').value;
     const asegurado = document.getElementById('asegurado').value;
     const contratante = document.getElementById('contratante').value;
@@ -79,6 +81,7 @@ Clínica: ${clinica}
 Tipo error: ${tipoError}
 Detalles del error: ${detalles}`;
 
+    // Copiar en el porta papeles 
     navigator.clipboard.writeText(text).then(() => {
       console.log("Copiado al portapapeles:");
       console.log(text);
