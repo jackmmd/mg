@@ -1,7 +1,3 @@
-### Crear los siguentes archivos en la raíz del proyecto
-- incidentes.csv
-- incidentes_res.txt
-
 ## Preview
 <img src="./public/preview.png"/>
 
