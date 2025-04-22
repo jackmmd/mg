@@ -1,0 +1,19 @@
+#form-incident,#form-login {
+  display: flex;
+  flex-direction: column;
+  max-width: 200px;
+  padding-top: 10px;
+  margin: auto;
+}
+
+input,select {
+  margin-bottom: 5px;
+}
+
+button {
+  margin-top: 2px;
+}
+
+#info-small {
+  text-align: center;
+}

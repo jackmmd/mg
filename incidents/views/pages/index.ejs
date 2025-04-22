@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Casos SITEDS | Crear incidente</title>
+  <link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+  <p id="info-small">Al momento de enviar el formulario, se copiará el mensaje en el portapapeles para ser enviado.</p>
+  <form id="form-incident" action="/incident/create" method="POST">
+    <!-- Error reportado -->
+    <label for="tipo_error">Error reportado:</label>
+    <select id="tipo_error" name="tipo_error">
+      <!-- Las opciones se agregan dinámicamente -->
+    </select>
+    <!-- DNI -->
+    <label for="dni">DNI:</label>
+    <input type="text" id="dni" name="dni" placeholder="Ejm: 40962660" required>
+
+    <!-- Asegurado -->
+    <label for="asegurado">Asegurado:</label>
+    <input type="text" id="asegurado" name="asegurado" required placeholder="Nombre completo del asegurado">
+
+    <!-- Contratante -->
+    <label for="contratante">Contratante:</label>
+    <input type="text" id="contratante" name="contratante" placeholder="Ejm: UTP">
+
+    <!-- Clínica -->
+    <label for="clinica">Clínica:</label>
+    <input type="text" id="clinica" name="clinica" placeholder="Ejm: SAN FELIPE" required>
+
+    <!-- Detalles del error -->
+    <label for="detalles">Detalles del error:</label>
+    <textarea rows="5" id="detalles" name="detalles" required>Parece un error de servicio, habría que revisarlo con la clínica, proceder</textarea>
+
+    <!-- Botón de envío -->
+    <button type="submit">Enviar</button>
+  </form>
+
+  <script>
+    const error_messages = [
+      { value: "Error de servicio", details: "Estos son los resultados del SITEDS, parece un error de servicio, intentar nuevamente si no habría que revisarlo con la clínica, proceder" },
+      { value: "Carga de endoso pendiente", details: "Al parecer aún no se ha realizado la carga del endoso con su nueva vigencia, proceder" },
+      { value: "Sustento inválido", details: "Debe enviar otro sustento la clínica" },
+      { value: "Carga de asegurados pendiente", details: "Al parecer no hicieron la carga de asegurados, proceder" },
+      { value: "Pendiente ejecutar autorización", details: "Ignorar esa alerta, presionar 'AUTORIZACIÓN DE CONSULTA' y proceder." },
+      { value: "Error por búsqueda global", details: "Se debe desactivar el check 'Consulta General al Registro de Afiliados al AUS', seleccionar Chubb Perú y luego proceder." },
+      { value: "Error - Información del afiliado incorrecta", details: "Posiblemente un problema con la información registrada del afiliado. Habría que revisarlo con la clínica. Proceder" },
+      { value: "Pestaña inválida", details: "La clínica está usando una pestaña equivocada, la búsqueda debe hacerlo en la pestaña búsqueda del asegurado." },
+      { value: "Tablas no actualizadas", details: "Las tablas no estan actualizadas debe actualizar las tablas de acuerdo a la circular" },
+      { value: "La clínica no cuenta con SITEDS", details: 'La clínica no se encuentra dentro de la "Relación Actualizada de IPRESS que están obligadas a utilizar el modelo TEDEF"' },
+    ];
+
+    const form_incident = document.getElementById('form-incident')
+    const select_elemet = document.getElementById('tipo_error')
+    const input_small = document.getElementById('info-small')
+
+    // Asignar seleccionables al select tipo de error
+    error_messages.forEach(err=>{
+      select_elemet.innerHTML += `<option value="${err.value}">${err.value}</option>`
+    })
+
+    // Autocompletar los detalles del error al momento de seleccionar un tipo de error
+    document.getElementById('tipo_error').addEventListener('change', function () {
+      const selected = this.value;
+      document.getElementById('detalles').value = error_messages.find(err=>err.value===selected).details || '';
+    });
+
+    document.querySelector('form').addEventListener('submit', function (e) {
+    const dni = document.getElementById('dni').value;
+    const asegurado = document.getElementById('asegurado').value;
+    const contratante = document.getElementById('contratante').value;
+    const clinica = document.getElementById('clinica').value;
+    const tipoError = document.getElementById('tipo_error').value;
+    const detalles = document.getElementById('detalles').value;
+
+    const text = `DNI: ${dni}
+Asegurado: ${asegurado}
+Contratante: ${contratante}
+Clínica: ${clinica}
+Error reportado: ${tipoError}
+Detalles del error: ${detalles}`;
+
+    // Copiar en el porta papeles 
+    navigator.clipboard.writeText(text).then(() => {
+      console.log("Copiado al portapapeles:");
+      console.log(text);
+    }).catch(err => {
+      console.error('Error al copiar al portapapeles: ', err);
+    });
+  });
+  </script>
+</body>
+</html>
