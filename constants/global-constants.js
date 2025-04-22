@@ -1,6 +1,0 @@
-const {
-    PORT:PORT = 3000,
-    SHEET_ID:SHEET_ID = "",
-    GOOGLE_SERVICE_ACCOUNT_JSON: GOOGLE_SERVICE_ACCOUNT_JSON = ""
-} =  process.env
-module.exports = { SHEET_ID, GOOGLE_SERVICE_ACCOUNT_JSON,PORT }

@@ -1,3 +1,2 @@
-.vercel
-node_modules
-.env
+incidents/node_modules
+incidents/.env
