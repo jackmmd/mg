@@ -1,2 +1,12 @@
+# Incidentes
 incidents/node_modules
 incidents/.env
+
+# Playwright
+chubb-tests/tedef/node_modules
+chubb-tests/tedef/test-results
+chubb-tests/tedef/playwright-report/*
+chubb-tests/tedef/blob-report
+chubb-tests/tedef/playwright/.cache/
+chubb-tests/tedef/test-results/*
+chubb-tests/tedef/auth.json
