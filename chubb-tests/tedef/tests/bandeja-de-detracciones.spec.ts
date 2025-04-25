@@ -16,6 +16,3 @@ test.describe('Tedef - Bandeja de detracciones',()=>{
         await page.getByRole('button', { name: 'REVISAR' }).click(); 
     })
 })
-
-// Desde el 18 de abril
-// Job_apertura_siniestros
