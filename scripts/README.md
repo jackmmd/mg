@@ -1,3 +1,6 @@
+### Tecnologías usadas
+- NodeJs v22.15.0
+
 ### Ejecución
 
 Debe estar ubicado en la carpeta
