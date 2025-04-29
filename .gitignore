@@ -13,3 +13,6 @@ chubb-tests/tedef/auth.json
 
 # Scripts
 scripts/node_modules
+
+# Encodificación de tramas
+encodificacion-de-tramas/dist
