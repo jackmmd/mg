@@ -1,7 +1,7 @@
 Estos scripts facilitan tareas pequeñas repetitivas
 #### Archivos
 - generate-report.py: Genera un reporte para el consolidado
-- open.py: Habre un proyecto y depende de [p_open.py,r_open.py,t_open.py,m_open.py]     
+- open.py: Abre un proyecto y depende de [p_open.py,r_open.py,t_open.py,m_open.py]     
  
 ### Uso
 #### 1. Script <code>open.py</code>
