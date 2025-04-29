@@ -1,11 +1,11 @@
 {
   "name": "mg-3",
   "version": "1.0.0",
-  "description": "",
+  "description": "Chubb tests",
   "main": "index.js",
   "scripts": {},
   "keywords": [],
-  "author": "",
+  "author": "https://github.com/jackmmd",
   "license": "ISC",
   "devDependencies": {
     "@playwright/test": "^1.51.1",
