@@ -10,3 +10,6 @@ chubb-tests/tedef/blob-report
 chubb-tests/tedef/playwright/.cache/
 chubb-tests/tedef/test-results/*
 chubb-tests/tedef/auth.json
+
+# Scripts
+scripts/node_modules

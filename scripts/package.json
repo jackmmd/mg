@@ -1,0 +1,16 @@
+{
+  "name": "scripts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "convert-spaces-12xn-csv-individual.js",
+  "type": "module",
+  "scripts": {
+    "lote-to-csv": "node convert-lote-files-to-csv/convert-lote-files-to-csv.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "event-stream": "^4.0.1"
+  }
+}
