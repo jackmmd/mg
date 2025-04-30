@@ -30,9 +30,9 @@
     <label for="clinica">Clínica:</label>
     <input type="text" id="clinica" name="clinica" placeholder="Ejm: SAN FELIPE" required>
 
-    <!-- Detalles del error -->
-    <label for="detalles">Detalles del error:</label>
-    <textarea rows="5" id="detalles" name="detalles" required>Parece un error de servicio, habría que revisarlo con la clínica, proceder</textarea>
+    <!-- Respuesta -->
+    <label for="respuesta">Respuesta:</label>
+    <textarea rows="5" id="respuesta" name="respuesta" required>Parece un error de servicio, habría que revisarlo con la clínica, proceder</textarea>
 
     <!-- Botón de envío -->
     <button type="submit">Enviar</button>
@@ -62,10 +62,10 @@
       select_elemet.innerHTML += `<option value="${err.value}">${err.value}</option>`
     })
 
-    // Autocompletar los detalles del error al momento de seleccionar un tipo de error
+    // Autocompletar los respuesta del error al momento de seleccionar un tipo de error
     document.getElementById('tipo_error').addEventListener('change', function () {
       const selected = this.value;
-      document.getElementById('detalles').value = error_messages.find(err=>err.value===selected).details || '';
+      document.getElementById('respuesta').value = error_messages.find(err=>err.value===selected).details || '';
     });
 
     document.querySelector('form').addEventListener('submit', function (e) {
@@ -74,14 +74,14 @@
     const contratante = document.getElementById('contratante').value;
     const clinica = document.getElementById('clinica').value;
     const tipoError = document.getElementById('tipo_error').value;
-    const detalles = document.getElementById('detalles').value;
+    const respuesta = document.getElementById('respuesta').value;
 
     const text = `DNI: ${dni}
 Asegurado: ${asegurado}
 Contratante: ${contratante}
 Clínica: ${clinica}
 Error reportado: ${tipoError}
-Detalles del error: ${detalles}`;
+Respuesta: ${respuesta}`;
 
     // Copiar en el porta papeles 
     navigator.clipboard.writeText(text).then(() => {
